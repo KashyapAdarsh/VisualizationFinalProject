@@ -1,4 +1,6 @@
-function draw_tree(data){
+function draw_tree(data, id){
+    console.log("In Collapsible Tree drawing method");
+    console.log("ID: ", id);
     var margin = {top: 20, right: 120, bottom: 20, left: 220},
     width = 960 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
@@ -13,12 +15,11 @@ function draw_tree(data){
     var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select(id).append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 
     root = data;
     console.log(data)

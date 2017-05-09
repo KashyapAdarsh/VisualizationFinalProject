@@ -1,22 +1,21 @@
-function get_data(input) {
+function createCollapsibleTree(input, id) {
     console.log("In receive data");
     $.ajax({
         data : {
             name : input
         },
         type : 'POST',
-        url : 'http://127.0.0.1:5000/getData'
+        url : 'http://127.0.0.1:5000/getCollapsibleTreeData'
     })
     .done(function(data_from_server) {       
         console.log("Received resposne")
         
-        if (input == "collapsible_tree"){
+        if (input == "collapsible_tree", id){
             console.log(data_from_server.DATA);
-            draw_tree(data_from_server.DATA);   
+            draw_tree(data_from_server.DATA, id);   
         }
     });
 }
-
 
 var cross = null;
 var drib = null;
@@ -25,9 +24,7 @@ var volley = null;
 var short_pass = null;
 var finish = null;
 
-
 function get_top_in_category(category) {
-
     if (category == "dribbling" && drib != null) {
         createBarChart(drib);
     } else if (category == "crossing" && cross != null) {

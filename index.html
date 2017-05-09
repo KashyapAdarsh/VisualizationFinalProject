@@ -6,9 +6,16 @@
 
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+	<link rel="stylesheet" href="CSS/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="CSS/style.css"> <!-- Resource style -->
+	<script src="Javascript/modernizr.js"></script> <!-- Modernizr -->
+    <script src="Javascript/jquery-2.1.1.js"></script>
+    <script src="Javascript/main.js"></script>
+    <script src="Javascript/BarChart.js"></script>
+    <script src="Javascript/collapsible_tree.js"></script>
+    <script src="Javascript/server_request.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
   	
 	<title>Visualization Final Project</title>
 </head>
@@ -28,9 +35,9 @@
 	</nav>
 
 	<ul class="cd-tabs-content">
-		<li data-content="inbox" class="selected">
+		<li data-content="inbox" id="collapsible_tree" class="selected">
 			<script>
-                get_data("collapsible_tree");
+                createCollapsibleTree("collapsible_tree", "#collapsible_tree");
             </script>
 		</li>
 
@@ -61,8 +68,5 @@
 		</li>
 	</ul> <!-- cd-tabs-content -->
 </div> <!-- cd-tabs -->
-
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/main.js"></script> <!-- Resource jQuery -->
 </body>
 </html>

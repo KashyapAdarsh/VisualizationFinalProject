@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, Response, render_template
 from Connection import QueryExecutor
+import ServerHelper
 
 app = Flask(__name__)
 Executor = QueryExecutor()
@@ -9,13 +10,18 @@ def index():
     return render_template('../index2.html')
 
 
-def create_response(xValue, yValue):
-    retval =[]
-    for index in range(0, len(xValue)):
-        retval.append({"X": xValue[index], "Y": yValue[index]})
+@app.route('/getCollapsibleTreeData', methods=['POST', 'GET'])
+def getCollapsibleTreeData():
+    requestType = request.form['name']
+    print("Received request")
 
-    return retval
-
+    response = []
+    if(requestType == "collapsible_tree"):
+        data = ServerHelper.make_JSON()
+        
+    response = jsonify({'DATA': data})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 # API to get the top - n players in each category
 @app.route('/getTopNInCategory', methods=['POST', 'GET'])
@@ -29,6 +35,21 @@ def getTopNInCategory():
     response = jsonify({'points': data})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
+@app.route('/getRadarData', methods=['POST', 'GET'])
+def getRadarData():
+    data = Executor.get_radar_data()
+    names, remaining_data = get_radar_specific_data(data)
+    response = jsonify({'LegendOptions': names, 'd': remaining_data})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+def create_response(xValue, yValue):
+    retval =[]
+    for index in range(0, len(xValue)):
+        retval.append({"X": xValue[index], "Y": yValue[index]})
+
+    return retval
 
 def get_radar_specific_data(data):
     player_names = []
@@ -64,20 +85,9 @@ def get_radar_specific_data(data):
         current_player.append({"axis":'Marking', "value":float(row['marking']) / 100})
         current_player.append({"axis":'Aggression', "value":float(row['aggression']) / 100})
         current_player.append({"axis":'Interceptions', "value":float(row['interceptions']) / 100})
-        
         player_data.append(current_player)
 
     return player_names, player_data
-
-
-
-@app.route('/getRadarData', methods=['POST', 'GET'])
-def getRadarData():
-    data = Executor.get_radar_data()
-    names, remaining_data = get_radar_specific_data(data)
-    response = jsonify({'LegendOptions': names, 'd': remaining_data})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5000, debug=True)

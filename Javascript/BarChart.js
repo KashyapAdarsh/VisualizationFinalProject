@@ -1,5 +1,5 @@
 /* This function creates bar chart */		
-function createBarChart(data) {
+function createBarChart(data, ID) {
     var sel = document.getElementById("DropDown");
     var category = sel.options[sel.selectedIndex].text;
 
@@ -28,7 +28,7 @@ function createBarChart(data) {
         return xLabels[i];
     });
 
-    var svg = d3.select("#Graph").append("svg")
+    var svg = d3.select(ID).append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")

@@ -11,6 +11,7 @@
 	<script src="Javascript/modernizr.js"></script> <!-- Modernizr -->
     <script src="Javascript/jquery-2.1.1.js"></script>
     <script src="Javascript/main.js"></script>
+    <script src="Javascript/Constants.js"></script>
     <script src="Javascript/BarChart.js"></script>
     <script src="Javascript/collapsible_tree.js"></script>
     <script src="Javascript/server_request.js"></script>
@@ -37,14 +38,25 @@
 	<ul class="cd-tabs-content">
 		<li data-content="inbox" id="collapsible_tree" class="selected">
 			<script>
-                createCollapsibleTree("collapsible_tree", "#collapsible_tree");
+                create_collapsible_tree("collapsible_tree");
             </script>
 		</li>
 
 		<li data-content="new">
-			<p>New Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non a voluptatibus, ex odit totam cumque nihil eos asperiores ea, labore rerum. Doloribus tenetur quae impedit adipisci, laborum dolorum eaque ratione quaerat, eos dicta consequuntur atque ex facere voluptate cupiditate incidunt.</p>
-
-			<p>New Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non a voluptatibus, ex odit totam cumque nihil eos asperiores ea, labore rerum. Doloribus tenetur quae impedit adipisci, laborum dolorum eaque ratione quaerat, eos dicta consequuntur atque ex facere voluptate cupiditate incidunt.</p>
+            <div id = "Selector">
+                <select id="DropDown" class="semi-square" onchange="get_top_in_category(value)">
+                    <option value="crossing">Crossing</option>
+                    <option value="dribbling">Dribbling</option>
+                    <option value="finishing">Finishing</option>
+                    <option value="overall_rating">Overall Rating</option>
+                    <option value="short_passing">Short Passing</option>
+                    <option value="volleys">Volleys</option>
+                </select>
+            </div>
+            
+            <div id="bar_graph">
+                
+            </div>
 		</li>
 
 		<li data-content="gallery">

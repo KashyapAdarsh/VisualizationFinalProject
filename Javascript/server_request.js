@@ -1,4 +1,4 @@
-function createCollapsibleTree(input, id) {
+function create_collapsible_tree(input) {
     console.log("In receive data");
     $.ajax({
         data : {
@@ -10,9 +10,9 @@ function createCollapsibleTree(input, id) {
     .done(function(data_from_server) {       
         console.log("Received resposne")
         
-        if (input == "collapsible_tree", id){
+        if (input == "collapsible_tree"){
             console.log(data_from_server.DATA);
-            draw_tree(data_from_server.DATA, id);   
+            drawCollapsibleTree(data_from_server.DATA, COLLAPSIBLE_TREE_ID);
         }
     });
 }
@@ -26,17 +26,17 @@ var finish = null;
 
 function get_top_in_category(category) {
     if (category == "dribbling" && drib != null) {
-        createBarChart(drib);
+        createBarChart(drib, BAR_GRAPH_ID);
     } else if (category == "crossing" && cross != null) {
-        createBarChart(cross);
+        createBarChart(cross, BAR_GRAPH_ID);
     } else if (category == "overall_rating" && over_all != null) {
-        createBarChart(over_all);
+        createBarChart(over_all, BAR_GRAPH_ID);
     } else if (category == "short_passing" && short_pass != null) {
-        createBarChart(short_pass);
+        createBarChart(short_pass, BAR_GRAPH_ID);
     } else if (category == "volleys" && volley != null) {
-        createBarChart(volley);
+        createBarChart(volley, BAR_GRAPH_ID);
     } else if (category == "finishing" && finish != null) {
-        createBarChart(finish);
+        createBarChart(finish, BAR_GRAPH_ID);
     } else {
         console.log("In Get-Top");
         $.ajax({
@@ -65,7 +65,7 @@ function get_top_in_category(category) {
                finish = data_from_server.points;
             }
             
-            createBarChart(data_from_server.points);
+            createBarChart(data_from_server.points, BAR_GRAPH_ID);
         });
     }
 }

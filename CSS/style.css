@@ -390,3 +390,12 @@ line {
    -moz-border-radius: 5px;
    border-radius: 5px;
 }
+
+/*------------------------------------
+        CSS for Radar Graph
+-------------------------------------*/
+#radar_chart {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+}

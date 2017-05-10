@@ -11,12 +11,14 @@
 	<script src="Javascript/modernizr.js"></script> <!-- Modernizr -->
     <script src="Javascript/jquery-2.1.1.js"></script>
     <script src="Javascript/main.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="Javascript/Constants.js"></script>
     <script src="Javascript/BarChart.js"></script>
     <script src="Javascript/collapsible_tree.js"></script>
     <script src="Javascript/server_request.js"></script>
+    <script src="Javascript/RadarChart.js"></script>
+    <script src="Javascript/RadarChartHelper.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
   	
 	<title>Visualization Final Project</title>
 </head>
@@ -59,10 +61,10 @@
             </div>
 		</li>
 
-		<li data-content="gallery">
-			<p>Gallery Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque tenetur aut, cupiditate, libero eius rerum incidunt dolorem quo in officia.</p>
-
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ipsa vero, culpa doloremque voluptatum consectetur mollitia, atque expedita unde excepturi id, molestias maiores delectus quos molestiae. Ab iure provident adipisci eveniet quisquam ratione libero nam inventore error pariatur optio facilis assumenda sint atque cumque, omnis perspiciatis. Maxime minus quam voluptatum provident aliquam voluptatibus vel rerum. Soluta nulla tempora aspernatur maiores! Animi accusamus officiis neque exercitationem dolore ipsum maiores delectus asperiores reprehenderit pariatur placeat, quaerat sed illum optio qui enim odio temporibus, nulla nihil nemo quod dicta consectetur obcaecati vel. Perspiciatis animi corrupti quidem fugit deleniti, atque mollitia labore excepturi ut.</p>
+		<li data-content="gallery" id="radar_chart">
+            <script>
+                draw_radar_chart();
+            </script>
 		</li>
 
 		<li data-content="store">

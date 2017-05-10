@@ -69,3 +69,17 @@ function get_top_in_category(category) {
         });
     }
 }
+
+function draw_radar_chart() {
+	$.ajax({
+    	data : {
+	        name : "Radar"
+	    },
+	    type : 'POST',
+	    url : 'http://127.0.0.1:5000/getRadarData'
+	})
+	.done(function(data_from_server) {       
+	    console.log("Received response")
+	    radar_chart_helper(data_from_server.d, data_from_server.LegendOptions, RADAR_CHART_ID);
+	});
+}

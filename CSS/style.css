@@ -331,17 +331,26 @@ header h1 {
 }
 
 .link {
-  fill: none;
-  stroke: #ccc;
+  fill: teal;
+  stroke: teal;
   stroke-width: 1.5px;
 }
 
-.axis path,
-.axis line {
+.axis_bar path,
+.axis_bar line {
     stroke: #333333;
     shape-rendering: crispEdges;
     stroke-width: 2.5px;
     font-family: sans-serif;
+}
+
+.axis_player path,
+.axis_player line {
+    fill: none;
+    stroke: teal;
+    shape-rendering: crispEdges;
+    stroke-width: 1.5px;
+    color: white;
 }
 
 #DropDown {
@@ -359,7 +368,14 @@ header h1 {
 
 .label {
     font-family: sans-serif;
-    font-size: 18px;
+    font-size: 16px;
+
+}
+
+.player_label {
+    font-family: sans-serif;
+    color: white;
+    font-size: 12px;
 }
 
 path {
@@ -370,15 +386,12 @@ path {
 }
 
 
-line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
-    stroke-width: 0.5px;
-}
-
 .bar {
     fill: teal;
+}
+
+.player_bar {
+    fill: #CE5A57;
 }
 
 .bar:hover {
@@ -391,6 +404,54 @@ line {
    border-radius: 5px;
 }
 
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-weight: lighter;
+  border-radius: 5px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+
+#player_name {
+  height: 30px;
+  padding-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+
+#player_tip {
+  text-align: center;
+  align-content: center;
+  font-family: sans-serif;
+  width: 400px;
+  height:500px;
+}
+
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
 /*------------------------------------
         CSS for Radar Graph
 -------------------------------------*/

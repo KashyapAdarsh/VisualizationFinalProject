@@ -331,8 +331,8 @@ header h1 {
 }
 
 .link {
-  fill: teal;
-  stroke: teal;
+  fill: none;
+  stroke: #ccc;
   stroke-width: 1.5px;
 }
 
@@ -361,8 +361,8 @@ header h1 {
     width: 200px;
 }
 
-#Graph {
-    margin-left: 28%;
+#bar_graph {
+    margin-left: 15%;
     margin-top: 5%;
 }
 

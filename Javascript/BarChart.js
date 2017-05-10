@@ -1,10 +1,11 @@
 /* This function creates bar chart */   
-function createBarChart(data) {
+function createBarChart(data, ID) {
 
     var sel = document.getElementById("DropDown");
     var category = sel.options[sel.selectedIndex].text;
 
-    d3.select("#Graph").select("svg").remove();
+    d3.select(ID).select("svg").remove();
+    d3.select(ID).select("#player_tip").remove();
     var elements = Object.keys(data[0]);
 
     var xLabels = [];
@@ -12,9 +13,7 @@ function createBarChart(data) {
     for (i = 0; i < data.length; i++) {
         xLabels[i] = data[i].X;
     }
-
-    console.log(xLabels);
-    
+   
     var margin = {top: 30, right: 20, bottom: 30, left: 40},
         width = 700 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
@@ -37,7 +36,7 @@ function createBarChart(data) {
     })
 
 
-    var svg = d3.select("#Graph").append("svg")
+    var svg = d3.select(ID).append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -60,7 +59,7 @@ function createBarChart(data) {
         .attr("height", function(d) { return height - y(d.Y); })
         .on("mouseover", function(d, i) {
           tip.offset([height - y(d.Y) - 20, 230]);
-          document.getElementById("Graph").style.opacity = "0.5";
+          document.getElementById("bar_graph").style.opacity = "0.5";
           d3.select(this).attr("opacity", 1);
           tip.show()
           player_bar(data, d.X);
@@ -74,7 +73,7 @@ function createBarChart(data) {
         .on("mouseout", function(d, i) {
           d3.select("#player_tip").remove();
           tip.hide()
-          document.getElementById("Graph").style.opacity = "1";
+          document.getElementById("bar_graph").style.opacity = "1";
           /*d3.select(this).transition()
           .duration(0)
           .attr("width", 40)

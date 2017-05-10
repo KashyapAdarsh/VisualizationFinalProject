@@ -41,6 +41,7 @@ class QueryExecutor:
         for name in names:
             player_id = pd.read_sql_query("Select player_api_id from Player where player_name = '%s'" % name, connection)
             player_id = long(player_id.ix[0][0])
+            # Need to handle NULL HERE
             details = pd.read_sql_query("Select overall_rating, crossing, dribbling, finishing, short_passing, volleys, long_passing, ball_control, acceleration, sprint_speed, agility, balance, shot_power, stamina, strength, \
                 penalties, standing_tackle from Player_Attributes where player_api_id = %s"%player_id, connection)
             details = details.mean(axis=0)

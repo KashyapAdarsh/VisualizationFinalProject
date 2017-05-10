@@ -1,6 +1,9 @@
 /* This function creates bar chart */   
 function createBarChart(data, ID) {
 
+    all_details = data[1]
+    data = data[0]
+
     var sel = document.getElementById("DropDown");
     var category = sel.options[sel.selectedIndex].text;
 
@@ -62,7 +65,7 @@ function createBarChart(data, ID) {
           document.getElementById("bar_graph").style.opacity = "0.5";
           d3.select(this).attr("opacity", 1);
           tip.show()
-          player_bar([1,2,3], d.X);
+          player_bar(all_details, d.X);
 
           /*d3.select(this).transition()
           .duration(0)
@@ -109,15 +112,16 @@ function createBarChart(data, ID) {
 }
 
 
-function player_bar(data, player) {
+function player_bar(all_details, player) {
 
-    var data = [{"X":"speed", "Y":50},{"X":"agility", "Y":70}, {"X":"speed", "Y":80},{"X":"agility", "Y":60},
-    {"X":"speed", "Y":50},{"X":"agility", "Y":60}, {"X":"speed", "Y":20},{"X":"agility", "Y":60},
-    {"X":"speed", "Y":50},{"X":"agility", "Y":60}, {"X":"speed", "Y":30},{"X":"agility", "Y":60},
-    {"X":"speed", "Y":40},{"X":"agility", "Y":90}, {"X":"speed", "Y":10},{"X":"agility", "Y":60}]
+    console.log(player)
 
-    var elements = Object.keys(data[0]);
-    console.log(elements)
+    var data = [{"X":"Overall", "Y":all_details[player][0]},{"X":"Crossing", "Y":all_details[player][1]}, {"X":"Dribbling", "Y":all_details[player][2]},
+    {"X":"Finishing", "Y":all_details[player][3]}, {"X":"Short passing", "Y":all_details[player][4]},{"X":"Volleys", "Y":all_details[player][5]}, 
+    {"X":"Long passing", "Y":all_details[player][6]},{"X":"Ball control", "Y":all_details[player][7]}, {"X":"Acceleration", "Y":all_details[player][8]},
+    {"X":"Sprint speed", "Y":all_details[player][9]}, {"X":"Agility", "Y":all_details[player][10]},{"X":"Balance", "Y":all_details[player][11]},
+    {"X":"Shot power", "Y":all_details[player][12]}, {"X":"Stamina", "Y":all_details[player][13]},{"X":"Strength", "Y":all_details[player][14]},
+    {"X":"Penalties", "Y":all_details[player][15]},{"X":"Standing tackle", "Y":all_details[player][16]}]
 
     var attributes = [];
 
@@ -150,7 +154,7 @@ function player_bar(data, player) {
 
     // Scale the range of the data in the domains
     x.domain([0, d3.max(data, function(d) { return i; }) + 1]);
-    y.domain([0, d3.max(data, function(d) { return d.Y; })]);
+    y.domain([25, d3.max(data, function(d) { return d.Y; })]);
 
     // append the rectangles for the bar chart
     svg.selectAll(".bar")

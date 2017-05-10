@@ -34,6 +34,19 @@ class QueryExecutor:
         return top_n_player_names['player_name'].head(n).tolist(), top_n_player_names[category].head(n).tolist()
 
 
+    # This is used to get all the attributes for each player
+    def get_all_attributes(self, names):
+        all_details = dict()
+        connection = sqlite3.connect(DATABASE_PATH + DATABASE_NAME)
+        for name in names:
+            player_id = pd.read_sql_query("Select player_api_id from Player where player_name = '%s'" % name, connection)
+            player_id = long(player_id.ix[0][0])
+            details = pd.read_sql_query("Select overall_rating, crossing, dribbling, finishing, short_passing, volleys, long_passing, ball_control, acceleration, sprint_speed, agility, balance, shot_power, stamina, strength, \
+                penalties, standing_tackle from Player_Attributes where player_api_id = %s"%player_id, connection)
+            details = details.mean(axis=0)
+            all_details[name] = details.values.tolist()
+        return all_details
+
     def get_radar_data(self):
         connection = sqlite3.connect(DATABASE_PATH + DATABASE_NAME)
         player_data = pd.read_sql_query("Select * from Player", connection)

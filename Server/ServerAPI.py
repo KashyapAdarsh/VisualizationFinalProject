@@ -29,8 +29,10 @@ def getTopNInCategory():
     category = request.form['category']
 
     names, values = Executor.get_top_n_players_in_category(int(N), category)
-    #data = ServerHelper.create_response_for_bargraph(names, values)
-    data = ServerHelper.create_response_for_bargraph(['A','B','C', 'D', 'E', 'F', 'G', 'H'], [85,86,89,88,90,92,95,99])
+    data_temp = ServerHelper.create_response_for_bargraph(names, values)
+    details = Executor.get_all_attributes(names);
+    #data_temp = ServerHelper.create_response_for_bargraph(['A','B','C', 'D', 'E', 'F', 'G', 'H'], [85,86,89,88,90,92,95,99])
+    data = [data_temp, details]
     response = jsonify({'points': data})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response

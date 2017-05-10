@@ -9,7 +9,6 @@ Executor = QueryExecutor()
 def index():
     return render_template('../index2.html')
 
-
 @app.route('/getCollapsibleTreeData', methods=['POST', 'GET'])
 def getCollapsibleTreeData():
     requestType = request.form['name']

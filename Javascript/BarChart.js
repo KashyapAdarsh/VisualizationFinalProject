@@ -58,11 +58,11 @@ function createBarChart(data, ID) {
         .attr("y", function(d) { return y(d.Y); })
         .attr("height", function(d) { return height - y(d.Y); })
         .on("mouseover", function(d, i) {
-          tip.offset([height - y(d.Y) - 20, 230]);
+          tip.offset([height - y(d.Y) - 40, 230]);
           document.getElementById("bar_graph").style.opacity = "0.5";
           d3.select(this).attr("opacity", 1);
           tip.show()
-          player_bar(data, d.X);
+          player_bar([1,2,3], d.X);
 
           /*d3.select(this).transition()
           .duration(0)
@@ -111,21 +111,23 @@ function createBarChart(data, ID) {
 
 function player_bar(data, player) {
 
-    data = [{"X":"speed", "Y":50},{"X":"agility", "Y":60},{"X":"tacle", "Y":40}, 
-      {"X":"volley", "Y":70}, {"X":"speed", "Y":50},{"X":"agility", "Y":60},{"X":"tacle", "Y":90}, {"X":"volley", "Y":70},
-      {"X":"speed", "Y":50}]
+    var data = [{"X":"speed", "Y":50},{"X":"agility", "Y":70}, {"X":"speed", "Y":80},{"X":"agility", "Y":60},
+    {"X":"speed", "Y":50},{"X":"agility", "Y":60}, {"X":"speed", "Y":20},{"X":"agility", "Y":60},
+    {"X":"speed", "Y":50},{"X":"agility", "Y":60}, {"X":"speed", "Y":30},{"X":"agility", "Y":60},
+    {"X":"speed", "Y":40},{"X":"agility", "Y":90}, {"X":"speed", "Y":10},{"X":"agility", "Y":60}]
 
     var elements = Object.keys(data[0]);
+    console.log(elements)
 
     var attributes = [];
 
     for (i = 0; i < data.length; i++) {
         attributes[i + 1] = data[i].X;
     }
-    
+
     var margin = {top: 30, right: 20, bottom: 50, left: 20},
         width = 350 - margin.left - margin.right,
-        height = 460 - margin.top - margin.bottom - 30;
+        height = 360 - margin.top - margin.bottom - 30;
     
     padding = 100 / data.length;
 
@@ -133,7 +135,7 @@ function player_bar(data, player) {
     var x = d3.scale.linear().range([0, width]);
     var y = d3.scale.linear().range([height, 0]);
          
-    var xAxis = d3.svg.axis().scale(x);
+    var xAxis = d3.svg.axis().scale(x).ticks(attributes.length);
     var yAxis = d3.svg.axis().scale(y).orient("left");
 
     xAxis.tickFormat(function(d, i){
@@ -147,15 +149,15 @@ function player_bar(data, player) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // Scale the range of the data in the domains
-    x.domain([0, d3.max(data, function(d, i) { return i + 1; })]);
-    y.domain([0, d3.max(data, function(d) { return d.Y + 1; })]);
+    x.domain([0, d3.max(data, function(d) { return i; }) + 1]);
+    y.domain([0, d3.max(data, function(d) { return d.Y; })]);
 
     // append the rectangles for the bar chart
     svg.selectAll(".bar")
         .data(data)
         .enter().append("rect")
         .attr("class", "player_bar")
-        .attr("x", function(d, i) { return x(i) + 20; })
+        .attr("x", function(d, i) { return x(i) + 10; })
         .attr("width", (width / data.length) - padding)
         .attr("y", function(d) { return y(d.Y) - 10; })
         .attr("height", function(d) { return height - y(d.Y); });
@@ -168,8 +170,8 @@ function player_bar(data, player) {
       .selectAll("text")
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
-      .attr("dy", ".15em")
-      .style("font-size", "12px")
+      .attr("dy", ".05em")
+      .style("font-size", "11px")
       .style("fill", "white")
       .attr("transform", function(d) {
                 return "rotate(-70)" 

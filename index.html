@@ -30,11 +30,11 @@
 <div class="cd-tabs">
 	<nav>
 		<ul class="cd-tabs-navigation">
-			<li><a data-content="inbox" class="selected" href="#0">Inbox</a></li>
-			<li><a data-content="new" href="#0">New</a></li>
-			<li><a data-content="gallery" href="#0">Gallery</a></li>
-			<li><a data-content="store" href="#0">Store</a></li>
-			<li><a data-content="settings" href="#0">Settings</a></li>
+			<li><a data-content="inbox" class="selected" href="#0">Overview</a></li>
+			<li><a data-content="new" href="#0">Selection</a></li>
+			<li><a data-content="gallery" href="#0">Radar</a></li>
+			<li><a data-content="store" href="#0">Team</a></li>
+			<li><a data-content="settings" href="#0">Extra</a></li>
 		</ul> <!-- cd-tabs-navigation -->
 	</nav>
 
@@ -48,12 +48,23 @@
 		<li data-content="new">
             <div id = "Selector">
                 <select id="DropDown" class="semi-square" onchange="get_top_in_category(value)">
+                	<option value="overall_rating">Overall Rating</option>
                     <option value="crossing">Crossing</option>
                     <option value="dribbling">Dribbling</option>
                     <option value="finishing">Finishing</option>
-                    <option value="overall_rating">Overall Rating</option>
-                    <option value="short_passing">Short Passing</option>
+                    <option value="short_passing">Short Pass</option>
                     <option value="volleys">Volleys</option>
+                    <option value="long_passing">Long pass</option>
+                    <option value="ball_control">Control</option>
+                    <option value="acceleration">Acceleration</option>
+                    <option value="sprint_speed">Sprint speed</option>
+                    <option value="agility">Agility</option>
+                    <option value="balance">Balance</option>
+                    <option value="shot_power">Shot Power</option>
+                    <option value="stamina">Stamina</option>
+                    <option value="strength">Strength</option>
+                    <option value="penalties">Penalties</option>
+                    <option value="standing_tackle">Tackle</option>
                 </select>
             </div>
             

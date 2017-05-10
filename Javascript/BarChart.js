@@ -1,6 +1,5 @@
 /* This function creates bar chart */   
 function createBarChart(data, ID) {
-
     all_details = data[1]
     data = data[0]
 

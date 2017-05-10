@@ -114,7 +114,7 @@ function createBarChart(data, ID) {
 
 function player_bar(all_details, player) {
 
-    console.log(player)
+    document.getElementById("player_name").innerHTML = player;
 
     var data = [{"X":"Overall", "Y":all_details[player][0]},{"X":"Crossing", "Y":all_details[player][1]}, {"X":"Dribbling", "Y":all_details[player][2]},
     {"X":"Finishing", "Y":all_details[player][3]}, {"X":"Short passing", "Y":all_details[player][4]},{"X":"Volleys", "Y":all_details[player][5]}, 

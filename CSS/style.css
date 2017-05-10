@@ -338,9 +338,9 @@ header h1 {
 
 .axis_bar path,
 .axis_bar line {
-    stroke: #333333;
+    stroke: #29324e;
     shape-rendering: crispEdges;
-    stroke-width: 2.5px;
+    stroke-width: 2px;
     font-family: sans-serif;
 }
 

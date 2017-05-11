@@ -48,5 +48,16 @@ def getRadarData():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
+
+@app.route('/getTeamAttributes', methods=['POST', 'GET'])
+def getTeamAttributes():
+    team = request.form['team']
+    team_attributes = Executor.get_team_attributes(team)
+    #team_attributes = ServerHelper.create_parallelcoordinate_response(team_attributes)
+    response = jsonify({'Attributes': team_attributes})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+    
+
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5000, debug=True)

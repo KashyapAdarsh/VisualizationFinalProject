@@ -1,9 +1,5 @@
 function createParallelCoordinate(data, ID) {
-    var data = [
-        name,economy (mpg),cylinders,displacement (cc),power (hp),weight (lb),0-60 mph (s),year
-        AMC Ambassador Brougham,13,8,360,175,3821,11,73
-        AMC Ambassador DPL,15,8,390,190,3850,8.5,70
-    ];
+    console.log(data[0]);
     var margin = {top: 30, right: 10, bottom: 10, left: 10},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -25,8 +21,13 @@ function createParallelCoordinate(data, ID) {
 
       // Extract the list of dimensions and create a scale for each.
       x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
+          min = d3.min(data, function(d) { return i; });
+          max = d3.max(data, function(d) { return i; })
+          //min = (min - 0.1 * min) >= 0? (min - 0.1 * min): 0;
+          //max = (max + 0.1 * max) <= 100? (max + 0.1 * max): 100;
+          
         return d != "name" && (y[d] = d3.scale.linear()
-            .domain(d3.extent(data, function(p) { return +p[d]; }))
+            .domain([0, 100])
             .range([height, 0]));
       }));
 

@@ -1,4 +1,5 @@
 import sqlite3
+import numpy as np
 import pandas as pd
 
 DATABASE_PATH = "../Database/"
@@ -50,6 +51,7 @@ class QueryExecutor:
             all_details[name] = details.values.tolist()
         return all_details
 
+
     def get_radar_data(self):
         connection = sqlite3.connect(DATABASE_PATH + DATABASE_NAME)
         player_data = pd.read_sql_query("Select * from Player", connection)
@@ -67,5 +69,24 @@ class QueryExecutor:
         return average_rating_for_each_player.head(20)
 
 
+    # This function returns all the attributes of a given team
+    def get_team_attributes(self, team):
+        connection = sqlite3.connect(DATABASE_PATH + DATABASE_NAME)
+        team_id = pd.read_sql_query("Select team_api_id from Team where team_long_name = '%s'" % team, connection)
+        team_id = team_id.ix[0][0]
+
+        team_attributes = pd.read_sql_query("Select buildUpPlaySpeed, buildUpPlayDribbling, buildUpPlayPassing, chanceCreationPassing, chanceCreationCrossing, chanceCreationShooting, defencePressure, defenceAggression, defenceTeamWidth from Team_Attributes where team_api_id = '%s'" % team_id, connection)
+        team_attributes = team_attributes.mean(axis = 0)
+        column_names = np.array([["A", "B", "C", "D", "E", "F", "G", "H", "I"]])
+        team_attributes = team_attributes.values
+
+        team_attributes = np.reshape(team_attributes, (1, team_attributes.shape[0]))
+        column_names = np.append(column_names, team_attributes, axis = 0)        
+        return column_names.tolist()
+        #return team_attributes.tolist()
+
     def __init__(self):
-        print "nothing"
+        pass
+
+e = QueryExecutor()
+print e.get_team_attributes('Manchester United')

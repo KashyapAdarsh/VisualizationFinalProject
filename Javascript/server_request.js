@@ -93,3 +93,23 @@ function draw_radar_chart(count) {
     	});
     }
 }
+
+
+function draw_parallel_coordinate() {
+    if (radar_data != null) {
+        radar_chart_helper(radar_data.slice(0, count), radar_legend.slice(0, count), RADAR_CHART_ID);
+    } else {
+    	$.ajax({
+        	data : {
+    	        team : "Manchester United"
+    	    },
+    	    type : 'POST',
+    	    url : 'http://127.0.0.1:5000/getTeamAttributes'
+    	})
+    	.done(function(data_from_server) {       
+    	    console.log("Received response for parallel coordinate")
+            attributes = data_from_server.Attributes;
+    	    createParallelCoordinate(attributes, PARALLEL_COORDINATE_ID);
+    	});
+    }
+}

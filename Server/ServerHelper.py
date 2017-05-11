@@ -102,3 +102,9 @@ def get_radar_specific_data(data):
         player_data.append(current_player)
 
     return player_names, player_data
+
+def create_parallelcoordinate_response(attributes):
+    data = {}
+    print "Len: ", len(attributes)
+    data.update({"A": attributes[0][0], "B": attributes[0][1], "C": attributes[0][2], "D": attributes[0][3], "E": attributes[0][4]})
+    return data

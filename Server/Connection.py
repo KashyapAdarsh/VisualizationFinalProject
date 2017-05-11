@@ -44,8 +44,7 @@ class QueryExecutor:
             player_id = long(player_id.ix[0][0])
             # Need to handle NULL HERE
             print player_id
-            details = pd.read_sql_query("Select overall_rating, crossing, dribbling, finishing, short_passing, volleys, long_passing, ball_control, acceleration, sprint_speed, agility, balance, shot_power, stamina, strength, \
-                penalties, standing_tackle from Player_Attributes where player_api_id = %s"%player_id, connection)
+            details = pd.read_sql_query("Select overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes from Player_Attributes where player_api_id = %s"%player_id, connection)
             details.fillna(0, inplace=True)
             details = details.mean(axis=0)
             all_details[name] = details.values.tolist()

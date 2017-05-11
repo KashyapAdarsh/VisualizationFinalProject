@@ -514,7 +514,7 @@ input[type=range]::-webkit-slider-runnable-track {
   margin-top: 10px;
   width: 18%;
   margin-left: 1.4%;
-  height: 250px;
+  height: 260px;
   color: #333333;
   float: left;
   background-color: #DE5E57;
@@ -527,11 +527,35 @@ h3{
   font-weight: bolder;
 }
 
-#player_list {
+#player_list_attack, #player_list_defence, #player_list_build, #player_list_goal, #player_list_pass {
   padding-left: 6%;
-  margin-top: 10%;
+  overflow: auto;
+  overflow-y: auto;
+  max-height: 200px;
+  margin-top: 5%;
   float: left;
+  width: 98%;
 }
+
+#player_list_attack::-webkit-scrollbar {
+    width: 0px;
+}
+
+#player_list_defence::-webkit-scrollbar {
+    width: 0px;
+}
+
+#player_list_build::-webkit-scrollbar {
+    width: 0px;
+}
+
+#player_list_goal::-webkit-scrollbar {
+    width: 0px;
+}
+#player_list_pass::-webkit-scrollbar {
+    width: 0px;
+}
+
 
 input[type="checkbox"] {
   display:none;

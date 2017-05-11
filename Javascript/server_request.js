@@ -70,16 +70,26 @@ function get_top_in_category(category) {
     }
 }
 
-function draw_radar_chart() {
-	$.ajax({
-    	data : {
-	        name : "Radar"
-	    },
-	    type : 'POST',
-	    url : 'http://127.0.0.1:5000/getRadarData'
-	})
-	.done(function(data_from_server) {       
-	    console.log("Received response")
-	    radar_chart_helper(data_from_server.d, data_from_server.LegendOptions, RADAR_CHART_ID);
-	});
+
+var radar_data = null;
+var radar_legend = null;
+
+function draw_radar_chart(count) {
+    if (radar_data != null) {
+        radar_chart_helper(radar_data.slice(0, count), radar_legend.slice(0, count), RADAR_CHART_ID);
+    } else {
+    	$.ajax({
+        	data : {
+    	        name : "Radar"
+    	    },
+    	    type : 'POST',
+    	    url : 'http://127.0.0.1:5000/getRadarData'
+    	})
+    	.done(function(data_from_server) {       
+    	    console.log("Received response")
+            radar_data = data_from_server.d;
+            radar_legend = data_from_server.LegendOptions;
+    	    radar_chart_helper(radar_data.slice(0, count), radar_legend.slice(0, count), RADAR_CHART_ID);
+    	});
+    }
 }

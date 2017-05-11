@@ -1,7 +1,7 @@
 var width = 500,
 	height = 500;
 
-var colorscale = d3.scale.category10();
+var colorscale = d3.scale.category20();
 
 var mycfg = {
     w: width,
@@ -10,6 +10,11 @@ var mycfg = {
     levels: 6,
     ExtraWidthX: 300
 }
+
+function change_radar_value(val) {
+	radar_chart_helper(radar_data.slice(0, val), radar_legend.slice(0, val), RADAR_CHART_ID);
+}
+
 
 function radar_chart_helper(d, LegendOptions, ID) {
 	RadarChart.draw(ID, d, mycfg);
@@ -29,7 +34,7 @@ function radar_chart_helper(d, LegendOptions, ID) {
 	.attr("y", 10)
 	.attr("font-size", "12px")
 	.attr("fill", "#404040")
-	.text("Top 10 players in the world");
+	.text("Top " + d.length + " players in the world");
 
 	//Initiate Legend	
 	var legend = svg.append("g")

@@ -76,9 +76,14 @@
 		</li>
 
 		<li data-content="gallery" id="radar_chart">
-            <script>
-                draw_radar_chart();
+            <div id = "radar_slider">
+                <input type="range" id="sliderBar" min = "2" max = "20" value= "5" onchange="draw_radar_chart(this.value)">
+            </div>
+            <div id="radarChart"> 
+                <script>
+                    draw_radar_chart(5);
             </script>
+            </div>
 		</li>
 
 		<li data-content="store">

@@ -61,8 +61,8 @@ class QueryExecutor:
 
         required_columns = ['player_name', 'player_api_id', 'player_fifa_api_id_x', 'height', 'weight', 'overall_rating', 'crossing', 'finishing', 'heading_accuracy', 'short_passing', 'volleys', 'dribbling', 'free_kick_accuracy', 'long_passing', 'ball_control', 'acceleration', 'sprint_speed', 'agility', 'reactions', 'balance', 'shot_power', 'stamina', 'strength', 'long_shots', 'aggression', 'interceptions', 'positioning', 'vision', 'penalties', 'marking', 'standing_tackle', 'sliding_tackle', 'gk_diving', 'gk_handling', 'gk_kicking', 'gk_positioning', 'gk_reflexes']
         average_rating_for_each_player = average_rating_for_each_player[required_columns]
-        average_rating_for_each_player = average_rating_for_each_player.nlargest(10, 'overall_rating')
-        return average_rating_for_each_player.head(10)
+        average_rating_for_each_player = average_rating_for_each_player.nlargest(20, 'overall_rating')
+        return average_rating_for_each_player.head(20)
 
 
     def __init__(self):

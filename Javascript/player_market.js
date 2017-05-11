@@ -1,10 +1,10 @@
 function add_player(chk, player_name, ID) {
+	console.log("Player selected : " + player_name);
 	if (chk.checked) {
 		console.log("checked");
 	} else {
 		console.log("unchecked")
 	}
-	console.log("Player selected : " + player_name);
 }
 
 function populate_players() {

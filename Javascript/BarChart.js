@@ -111,7 +111,6 @@ function createBarChart(data, ID) {
         .text(category);
 }
 
-
 function player_bar(all_details, player) {
 
     document.getElementById("player_name").innerHTML = player;

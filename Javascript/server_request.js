@@ -17,28 +17,11 @@ function create_collapsible_tree(input) {
     });
 }
 
-var cross = null;
-var drib = null;
-var over_all = null;
-var volley = null;
-var short_pass = null;
-var finish = null;
+var player_data = null;
 
-function get_top_in_category(category) {
-    if (category == "dribbling" && drib != null) {
-        createBarChart(drib, BAR_GRAPH_ID);
-    } else if (category == "crossing" && cross != null) {
-        createBarChart(cross, BAR_GRAPH_ID);
-    } else if (category == "overall_rating" && over_all != null) {
-        createBarChart(over_all, BAR_GRAPH_ID);
-    } else if (category == "short_passing" && short_pass != null) {
-        createBarChart(short_pass, BAR_GRAPH_ID);
-    } else if (category == "volleys" && volley != null) {
-        createBarChart(volley, BAR_GRAPH_ID);
-    } else if (category == "finishing" && finish != null) {
-        createBarChart(finish, BAR_GRAPH_ID);
-    } else {
-        console.log("In Get-Top");
+function fetch_all_data() {
+    console.log("Fetching all the data from DB")
+    for each(var category in db_attributes) {
         $.ajax({
             data : {
                 N : 10,
@@ -48,28 +31,16 @@ function get_top_in_category(category) {
             url : 'http://127.0.0.1:5000/getTopNInCategory'
         })
         .done(function(data_from_server) {
-            console.log(data_from_server.points);   
-            console.log("Received response")
-            
-            if (category == "dribbling") {
-                drib = data_from_server.points;
-            } else if (category == "crossing") {
-                cross = data_from_server.points;
-            } else if (category == "overall_rating") {
-                over_all = data_from_server.points;
-            } else if (category == "short_passing") {
-                short_pass = data_from_server.points;
-            } else if (category == "volleys") {
-                volley = data_from_server.points;
-            }  else if (category == "finishing") {
-               finish = data_from_server.points;
-            }
-            
-            createBarChart(data_from_server.points, BAR_GRAPH_ID);
-        });
+            player_data.push(data_from_server.points);
+        }
     }
+    console.log("Fetching data completed")
 }
 
+function get_top_in_category(category) {
+    var index = db_attributes.indexOf(category);
+    createBarChart(player_data[index], BAR_GRAPH_ID);
+}
 
 var radar_data = null;
 var radar_legend = null;

@@ -17,11 +17,13 @@ function create_collapsible_tree(input) {
     });
 }
 
-var player_data = null;
+var player_data = [];
 
 function fetch_all_data() {
     console.log("Fetching all the data from DB")
-    for each(var category in db_attributes) {
+    for (i = 0; i < 5; i ++){
+        var category = db_attributes[i];
+        console.log(category);          
         $.ajax({
             data : {
                 N : 10,
@@ -32,7 +34,7 @@ function fetch_all_data() {
         })
         .done(function(data_from_server) {
             player_data.push(data_from_server.points);
-        }
+        });
     }
     console.log("Fetching data completed")
 }

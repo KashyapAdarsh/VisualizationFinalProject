@@ -3,7 +3,6 @@ function createBarChart(data, ID) {
 
     all_details = data[1]
     data = data[0]
-    alert(data)
 
     var sel = document.getElementById("DropDown");
     var category = sel.options[sel.selectedIndex].text;

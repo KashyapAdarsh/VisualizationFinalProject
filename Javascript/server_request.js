@@ -89,8 +89,19 @@ function draw_parallel_coordinate(team) {
         /* team_attributes is the variable set in player_market.js */
         selected_team = team;
         team_attributes = data_from_server.Attributes;
+        draw_parallel_coordinate_helper(team_attributes);
+	});
+}
+
+function draw_parallel_coordinate_helper(team_attributes) {
+    if (selected_players.length > 0) {
+        player = selected_players[0];
+        selected_players.splice(0, 1);
+        data = modify_team_attributes(player, "checked");
+    }
+    else {
         data = []
         data.push(get_mapped_team_attributes(team_attributes));
-	    createParallelCoordinate(data, PARALLEL_COORDINATE_ID);
-	});
+    }
+    createParallelCoordinate(data, PARALLEL_COORDINATE_ID);    
 }

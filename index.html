@@ -71,6 +71,11 @@
                     <option value="strength">Strength</option>
                     <option value="penalties">Penalties</option>
                     <option value="standing_tackle">Tackle</option>
+                    <option value="gk_reflexes">GK Reflexes</option>
+                    <option value="gk_kicking">GK Kicking</option>
+                    <option value="gk_positioning">GK Positioning</option>
+                    <option value="gk_diving">GK Diving</option>
+                    <option value="gk_handling">GK Handling</option>
                 </select>
             </div>
             
@@ -130,8 +135,9 @@
                     populate_players();
                 </script>
                 <div id = "parallel_coordinate">
-                    
-
+                    <script>
+                        draw_parallel_coordinate('Manchester United');
+                    </script>
                 </div>
             </div>
 		</li>

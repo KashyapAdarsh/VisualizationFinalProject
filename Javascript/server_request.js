@@ -21,7 +21,7 @@ var player_data = [];
 
 function fetch_all_data() {
     console.log("Fetching all the data from DB")
-    for (i = 0; i < 5; i ++){
+    for (i = 0; i < TOTAL_CATEGORIES; i ++){
         var category = db_attributes[i];
         console.log(category);          
         $.ajax({
@@ -30,7 +30,8 @@ function fetch_all_data() {
                 category: category
             },
             type : 'POST',
-            url : 'http://127.0.0.1:5000/getTopNInCategory'
+            url : 'http://127.0.0.1:5000/getTopNInCategory',
+            async:false
         })
         .done(function(data_from_server) {
             player_data.push(data_from_server.points);
@@ -68,21 +69,25 @@ function draw_radar_chart(count) {
 }
 
 
-function draw_parallel_coordinate() {
+function draw_parallel_coordinate(team) {
     if (radar_data != null) {
         radar_chart_helper(radar_data.slice(0, count), radar_legend.slice(0, count), RADAR_CHART_ID);
     } else {
     	$.ajax({
         	data : {
-    	        team : "Manchester United"
+    	        team : team
     	    },
     	    type : 'POST',
     	    url : 'http://127.0.0.1:5000/getTeamAttributes'
     	})
     	.done(function(data_from_server) {       
     	    console.log("Received response for parallel coordinate")
-            attributes = data_from_server.Attributes;
-    	    createParallelCoordinate(attributes, PARALLEL_COORDINATE_ID);
+            /* team_attributes is the variable set in player_market.js */
+            selected_team = team;
+            team_attributes = data_from_server.Attributes;
+            data = []
+            data.push(get_mapped_team_attributes(team_attributes));
+    	    createParallelCoordinate(data, PARALLEL_COORDINATE_ID);
     	});
     }
 }

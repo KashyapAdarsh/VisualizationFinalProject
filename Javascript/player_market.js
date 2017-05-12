@@ -12,7 +12,7 @@ function get_new_attribute_value(player_attribute, team_attribute) {
         player_attribute = team_attribute + (player_attribute / MAX_VARIATION);
     }
     else {
-        player_attribute = team_attribute - (player_attribute / MAX_VARIATION);
+        player_attribute = team_attribute;// - (player_attribute / MAX_VARIATION);
     }
     
     if (player_attribute > 100) {
@@ -148,7 +148,7 @@ function fill_category(subcategories, n) {
 
 function fill_categories() {
     create_player_dictionary();
-    n = 15;
+    n = 20;
     
     // Build up play category
     var categories = [DRIBBLING, BALL_CONTROL, ACCELERATION, SPRINT_SPEED, AGILITY];

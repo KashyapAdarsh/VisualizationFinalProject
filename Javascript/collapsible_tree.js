@@ -20,8 +20,6 @@ function drawCollapsibleTree(data, ID){
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     root = data;
-    console.log(data)
-    console.log(data.children)
     root.x0 = height / 2;
     root.y0 = 0;
 

@@ -363,6 +363,14 @@ header h1 {
     width: 200px;
 }
 
+#DropDown_1 {
+    margin-top: 15px;
+    height: 30px;
+    text-align: center;
+    margin-left: 42%;
+    width: 200px;
+}
+
 #bar_graph {
     height:500px;
     margin-left: 15%;
@@ -504,7 +512,7 @@ input[type=range]::-webkit-slider-runnable-track {
 -------------------------------------*/
 #store_content {
   width: 100%;
-  height: 700px;
+  height: 900px;
 }
 
 #store_options {
@@ -512,10 +520,27 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 300px;
 }
 
-#defence , #attack , #build_play , #goal_keeper, #passing {
+#parallel_coordinate {
+  margin-top: 20px;
+  align-content: center;
+  margin-left: 50px;
+}
+
+#defence {
   margin-top: 10px;
   width: 18%;
-  margin-left: 1.4%;
+  margin-left: 2%;
+  height: 260px;
+  color: #333333;
+  float: left;
+  background-color: #DE5E57;
+  border-radius: 7px;
+}
+
+#attack , #build_play , #goal_keeper, #passing {
+  margin-top: 10px;
+  width: 18%;
+  margin-left: 1.55%;
   height: 260px;
   color: #333333;
   float: left;
@@ -579,4 +604,49 @@ input[type="checkbox"] + label span {
 
 input[type="checkbox"]:checked + label span {
     background:url(../img/check_radio_sheet.png) -19px top no-repeat;
+}
+
+
+/*------------------------------------
+        CSS for Parallel Co-ordinate
+-------------------------------------*/
+
+
+.background path {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+  stroke-width: 1.5px;
+}
+
+.foreground path {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.brush .extent {
+  fill-opacity: .3;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+.axis_parallel line,
+.axis_parallel path {
+  stroke-width: 1.5px;
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis_parallel text {
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+  cursor: move;
+}
+
+#team_menu {
+  height: 100px;
+  align-items: center;
+  align-content: center;
+  width: 100%;
 }

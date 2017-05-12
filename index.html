@@ -12,6 +12,7 @@
     <script src="Javascript/jquery-2.1.1.js"></script>
     <script src="Javascript/main.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="Javascript/parallelCoordinate.js"></script>
     <script src="Javascript/Constants.js"></script>
     <script src="Javascript/BarChart.js"></script>
     <script src="Javascript/collapsible_tree.js"></script>
@@ -134,8 +135,14 @@
                 <script type="text/javascript">
                     populate_players();
                 </script>
+                <div id = "team_menu">
+                    <select id="DropDown_1" class="semi-square" onchange="draw_parallel_coordinate(value)">
+                        <option value="Manchester United">Manchester United</option>
+                    </select>
+                </div>
                 <div id = "parallel_coordinate">
                     <script>
+                        populate_teams();
                         draw_parallel_coordinate('Manchester United');
                     </script>
                 </div>

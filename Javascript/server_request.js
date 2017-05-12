@@ -1,20 +1,27 @@
+
+var tree_data = null;
+
 function create_collapsible_tree(input) {
-    console.log("In receive data");
-    $.ajax({
-        data : {
-            name : input
-        },
-        type : 'POST',
-        url : 'http://127.0.0.1:5000/getCollapsibleTreeData'
-    })
-    .done(function(data_from_server) {       
-        console.log("Received resposne")
-        
-        if (input == "collapsible_tree"){
-            console.log(data_from_server.DATA);
-            drawCollapsibleTree(data_from_server.DATA, COLLAPSIBLE_TREE_ID);
-        }
-    });
+    if (tree_data == null) {
+        $.ajax({
+            data : {
+                name : input
+            },
+            type : 'POST',
+            url : 'http://127.0.0.1:5000/getCollapsibleTreeData',
+            async:false
+        })
+        .done(function(data_from_server) {       
+            console.log("Received resposne")
+            
+            if (input == "collapsible_tree"){
+                tree_data = data_from_server.DATA;
+                drawCollapsibleTree(data_from_server.DATA, COLLAPSIBLE_TREE_ID);
+            }
+        });
+    } else {
+        drawCollapsibleTree(tree_data, COLLAPSIBLE_TREE_ID);
+    }
 }
 
 var player_data = [];
@@ -68,26 +75,22 @@ function draw_radar_chart(count) {
     }
 }
 
-
 function draw_parallel_coordinate(team) {
-    if (radar_data != null) {
-        radar_chart_helper(radar_data.slice(0, count), radar_legend.slice(0, count), RADAR_CHART_ID);
-    } else {
-    	$.ajax({
-        	data : {
-    	        team : team
-    	    },
-    	    type : 'POST',
-    	    url : 'http://127.0.0.1:5000/getTeamAttributes'
-    	})
-    	.done(function(data_from_server) {       
-    	    console.log("Received response for parallel coordinate")
-            /* team_attributes is the variable set in player_market.js */
-            selected_team = team;
-            team_attributes = data_from_server.Attributes;
-            data = []
-            data.push(get_mapped_team_attributes(team_attributes));
-    	    createParallelCoordinate(data, PARALLEL_COORDINATE_ID);
-    	});
-    }
+    d3.select(PARALLEL_COORDINATE_ID).select("svg").remove();
+	$.ajax({
+    	data : {
+	        team : team
+	    },
+	    type : 'POST',
+	    url : 'http://127.0.0.1:5000/getTeamAttributes'
+	})
+	.done(function(data_from_server) {       
+	    console.log("Received response for parallel coordinate")
+        /* team_attributes is the variable set in player_market.js */
+        selected_team = team;
+        team_attributes = data_from_server.Attributes;
+        data = []
+        data.push(get_mapped_team_attributes(team_attributes));
+	    createParallelCoordinate(data, PARALLEL_COORDINATE_ID);
+	});
 }

@@ -75,6 +75,7 @@ class QueryExecutor:
         team_id = team_id.ix[0][0]
 
         team_attributes = pd.read_sql_query("Select buildUpPlaySpeed, buildUpPlayDribbling, buildUpPlayPassing, chanceCreationPassing, chanceCreationCrossing, chanceCreationShooting, defencePressure, defenceAggression, defenceTeamWidth from Team_Attributes where team_api_id = '%s'" % team_id, connection)
+        team_attributes.fillna(0, inplace=True)
         team_attributes = team_attributes.mean(axis = 0)
         column_names = np.array([["A", "B", "C", "D", "E", "F", "G", "H", "I"]])
         team_attributes = team_attributes.values

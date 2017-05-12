@@ -171,12 +171,28 @@ function add_player(chk, player_name, ID) {
 	console.log("Player selected : " + player_name);
 	if (chk.checked) {
 		console.log("checked");
-        modify_team_attributes(player_name, "checked");
+        data = modify_team_attributes(player_name, "checked");
 	} else {
 		console.log("unchecked")
-        modify_team_attributes(player_name, "unchecked");
+        data = modify_team_attributes(player_name, "unchecked");
+	}
+	d3.select(PARALLEL_COORDINATE_ID).select("svg").remove();
+	createParallelCoordinate(data, PARALLEL_COORDINATE_ID);
+}
+
+function populate_teams() {
+	console.log("In populate team");
+	console.log(tree_data.children);
+
+	var input = tree_data.children;
+	console.log(input[0])
+	for (i = 0; i < input.length; i++) {
+		for (j = 0; j < input[i]._children[0]._children.length; j++) {
+			document.getElementById("DropDown_1").innerHTML += `<option value="`+input[i]._children[0]._children[j].name+`">`+input[i]._children[0]._children[j].name+`</option>`;
+		}
 	}
 }
+
 
 function populate_players() {
 	// Attack

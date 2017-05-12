@@ -38,7 +38,7 @@ function createParallelCoordinate(data, ID) {
 	  // Extract the list of dimensions and create a scale for each.
 	  x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
 	    return d != "Name" && (y[d] = d3.scale.linear()
-	        .domain([0, 100])
+	        .domain([20, 80])
 	        .range([height, 0]));
 	  }));
 

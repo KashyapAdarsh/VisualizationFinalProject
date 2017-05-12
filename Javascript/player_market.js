@@ -9,14 +9,18 @@ function get_new_attribute_value(player_attribute, team_attribute) {
     //console.log("RECEIVED TEAM ATTRIBUTE: ", team_attribute);
 
     if (player_attribute >= team_attribute) {
-        player_attribute = team_attribute + (player_attribute / 25);
+        player_attribute = team_attribute + (player_attribute / MAX_VARIATION);
     }
     else {
-        player_attribute = team_attribute - (player_attribute / 25);
+        player_attribute = team_attribute - (player_attribute / MAX_VARIATION);
     }
     
     if (player_attribute > 100) {
         player_attribute = 100;
+    }
+    
+    if (player_attribute < 0) {
+        player_attribute = 0;
     }
 
     //console.log("RETURNING ATTRIBUTE: ", player_attribute);

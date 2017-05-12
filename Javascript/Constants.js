@@ -98,3 +98,6 @@ var db_attributes = [
     "gk_positioning",
     "gk_reflexes"
 ];
+
+/* Other Logic Constants */
+MAX_VARIATION = 10

@@ -120,7 +120,7 @@ function create_player_dictionary() {
     }
 }
 
-function fill_category(subcategories, n) {
+function fill_category(subcategories, n, sortOrder) {
     var players = Object.keys(player_dictionary);
     var top_players = [];
 
@@ -136,7 +136,12 @@ function fill_category(subcategories, n) {
     }
 
     result = [];
-    top_players.sort();
+    if (sortOrder == "Ascending") {
+        top_players.sort();
+    }
+    else if (sortOrder == "Descending") {
+        top_players.sort(function(a, b) { return b[0] - a[0];});
+    }
 
     for (i = 0; i <= n; ++i) {
         result[i] = top_players[top_players.length - i - 1][1];
@@ -152,23 +157,23 @@ function fill_categories() {
     
     // Build up play category
     var categories = [DRIBBLING, BALL_CONTROL, ACCELERATION, SPRINT_SPEED, AGILITY];
-    categorical_names[BUILD_UP_PLAY] = fill_category(categories, n);
+    categorical_names[BUILD_UP_PLAY] = fill_category(categories, n, "Ascending");
     
     // Passing categories
     categories = [SHORT_PASSING, LONG_PASSING, BALANCE, VISION];
-    categorical_names[PASSING] = fill_category(categories, n);
+    categorical_names[PASSING] = fill_category(categories, n, "Ascending");
     
     // Attack Categories
     categories = [CROSSING, FINISHING, HEADING_ACCURACY, VOLLEYS, FREE_KICK_ACCURACY, BALANCE, SHOT_POWER, LONG_SHOTS, PENALTIES];
-    categorical_names[ATTACK] = fill_category(categories, n);
+    categorical_names[ATTACK] = fill_category(categories, n, "Ascending");
     
     // Defense Categories
     categories = [BALANCE, AGGRESSION, INTERCEPTIONS, POSITIONING, MARKING, STANDING_TACKLE, SLIDING_TACKLE];
-    categorical_names[DEFENSE] = fill_category(categories, n);
+    categorical_names[DEFENSE] = fill_category(categories, n, "Ascending");
     
     // Goalkeeping Categories
-    categories = [GK_REFLEXES];
-    categorical_names[GOAL_KEEPING] = fill_category(categories, n);
+    categories = [CROSSING, FINISHING, HEADING_ACCURACY, VOLLEYS, FREE_KICK_ACCURACY, BALANCE, SHOT_POWER, LONG_SHOTS, PENALTIES];
+    categorical_names[GOAL_KEEPING] = fill_category(categories, n, "Descending");
 }
 
 function add_player(chk, player_name, ID) {

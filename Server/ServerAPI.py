@@ -31,7 +31,6 @@ def getTopNInCategory():
     names, values = Executor.get_top_n_players_in_category(int(N), category)
     data_temp = ServerHelper.create_response_for_bargraph(names, values)
     details = Executor.get_all_attributes(names);
-    #data_temp = ServerHelper.create_response_for_bargraph(['A','B','C', 'D', 'E', 'F', 'G', 'H'], [85,86,89,88,90,92,95,99])
     data = [data_temp, details]
     response = jsonify({'points': data})
     response.headers.add('Access-Control-Allow-Origin', '*')
@@ -50,7 +49,6 @@ def getRadarData():
 def getTeamAttributes():
     team = request.form['team']
     team_attributes = Executor.get_team_attributes(team)
-    #team_attributes = ServerHelper.create_parallelcoordinate_response(team_attributes)
     response = jsonify({'Attributes': team_attributes})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response

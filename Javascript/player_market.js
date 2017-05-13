@@ -5,8 +5,6 @@ var selected_players = [];
 var selected_team;
 
 function get_new_attribute_value(player_attribute, team_attribute) {
-    //console.log("RECEIVED PLAYER ATTRIBUTE: ", player_attribute);
-    //console.log("RECEIVED TEAM ATTRIBUTE: ", team_attribute);
 
     if (player_attribute >= team_attribute) {
         player_attribute = team_attribute + (player_attribute / MAX_VARIATION);
@@ -23,13 +21,10 @@ function get_new_attribute_value(player_attribute, team_attribute) {
         player_attribute = 0;
     }
 
-    //console.log("RETURNING ATTRIBUTE: ", player_attribute);
     return player_attribute;
 }
 
 function get_mapped_team_attributes(team_attributes) {
-    //console.log("Team: ", selected_team);
-    //console.log("Team Attributes: ", team_attributes);
     
     buildup = (team_attributes[0][BUILD_UP_PLAY_SPEED] + team_attributes[0][BUILD_UP_PLAY_DRIBBLING]) / 2;
     passing = (team_attributes[0][BUILD_UP_PLAY_PASSING] + team_attributes[0][CHANCE_CREATION_PASSING]) / 2;
@@ -47,7 +42,6 @@ function get_mapped_team_attributes(team_attributes) {
         GoalKeeping: gk
     };
 
-    //console.log("Team Mapped Attributes: ", mapped_attributes);
     return mapped_attributes;
 }
 
@@ -108,12 +102,10 @@ function modify_team_attributes(player_name, action) {
         });
     }
 
-    //console.log("MODIFIED ATTRIBUTES: ", all_attributes);
     return all_attributes;
 }
 
 function create_player_dictionary() {
-    //console.log("Create Player Dictionary");
     for (category = 0; category < TOTAL_CATEGORIES; ++category) {
         players = player_data[category][1];
         Object.assign(player_dictionary, players);
@@ -147,7 +139,6 @@ function fill_category(subcategories, n, sortOrder) {
         result[i] = top_players[top_players.length - i - 1][1];
     }
     
-    //console.log(result);
     return result;
 }
 
